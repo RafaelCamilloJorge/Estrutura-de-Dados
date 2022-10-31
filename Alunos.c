@@ -58,7 +58,7 @@ int busca(int codigo, int tamanho, Alunos a[]) {
 
 int main() {
     int i=0;
-    int N = 2;
+    int N = 3;
     float media;
     int codigo;
     Alunos al[N];
