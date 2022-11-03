@@ -55,11 +55,12 @@ int main() {
 
     printf("Filtrar Por Valor Maximo: R$: ");
     scanf("%f", &p);
-
+    printf("Carros ate %dR$\n", p);
     for (i = 0; i < N; i++)
     {
         if (p >= car[i].preco)
         {
+          
             printf("\nMarca: %s\n", car[i].marca);
             printf("Ano: %d\n", car[i].ano);
             printf("Preco: R$ %.2f\n", car[i].preco);
