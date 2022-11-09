@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define N 5
+#define N 5 // numero de produtos
 
 
 typedef struct mercado{
