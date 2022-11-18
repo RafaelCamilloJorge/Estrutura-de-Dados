@@ -2,10 +2,7 @@
 
 
 
-int busca(int n, int nmax, int nmin){
-    int item;
-    
-    scanf("%d", &item);
+int busca(int n, int nmax, int nmin, int item){
     int v[5] = {1,2,3,4,5};
     if (n <= nmax)
     {
@@ -24,12 +21,14 @@ int busca(int n, int nmax, int nmin){
             return -1;
         }
         
-        busca(n + 1, nmax, nmin);
+        busca(n + 1, nmax, nmin, item);
     }
 }
 
 
 
 int main(){
-    printf("Seu numero foi encontrado no indice v[%d]", busca(0, 5, 0));
+    int item;
+    scanf("%d", &item);
+    printf("Seu numero foi encontrado no indice v[%d]", busca(0, 5, 0, item));
 }
