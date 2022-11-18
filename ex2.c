@@ -17,8 +17,5 @@ void palavra(int n){
 
 
 int main(){
-
     palavra(6);
-
-
 }

@@ -16,7 +16,7 @@ int busca(int n, int item){
     }
     busca(n + 1, item);
   }
-    if(n > nmax){
+    else{
       return -1;
     }
 }
@@ -30,7 +30,15 @@ int main(){
   printf("DIGITE UM NUMERO A SER ENCONTRADO\n");
   scanf("%d", &item);
 
-  printf("%d", busca(0, item));
+  busca(0, item);
+  if (busca(0, item) > 0)
+  {
+    printf("%d", item);
+  }
+  
+  else{
+    printf("NUMERO NAO ENCONTRADO");
+  }
 
 
 }
