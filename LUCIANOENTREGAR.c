@@ -121,6 +121,7 @@ int busca(int codigo, struct node a[], int inf, int sup) {
 }
 
 int main (){
+  int x;
 srand(time(NULL));
 produto produtos[MAX];
 limpa_dados(produtos);
@@ -131,7 +132,8 @@ imprime(produtos);
 ordena(produtos, 2); // aplique bubble sort neste campo 3 ascedente
 imprime(produtos);
 ordena1(produtos);
-int b = busca(1015,produtos,0,MAX); // implementar
+scanf("%d", &x);
+int b = busca(x,produtos,0,MAX); // implementar
 if (b!=-1)
     printf ("\nProduto %d encontrado:\nCusto: %.2f\nVenda: %.2f\nTaxas + Imp: %.2f%%\n",
         produtos[b].codigo, produtos[b].custo, produtos[b].venda, (produtos[b].impostos + produtos[b].margem)*100 );
