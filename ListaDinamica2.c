@@ -1,72 +1,117 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct no {
-    int valor;
-    struct no* proximo;
-    struct no* anterior;
-} No;
 
-void inserir_em_ordem_decrescente(No** cabeca, No** fim, int novo_valor) {
-    No* novo = (No*)malloc(sizeof(No));
-    novo->valor = novo_valor;
-    novo->proximo = NULL;
-    novo->anterior = NULL;
+typedef struct No{
+    int elemento;
+    struct No *prox;
+}no;
 
-    if (*cabeca == NULL) { // Se a lista estiver vazia
-        *cabeca = novo;
-        *fim = novo;
-        return;
-    }
 
-    if (novo_valor >= (*cabeca)->valor) { // Inserir no início da lista
-        novo->proximo = *cabeca;
-        (*cabeca)->anterior = novo;
-        *cabeca = novo;
-        return;
-    }
-
-    if (novo_valor <= (*fim)->valor) { // Inserir no final da lista
-        (*fim)->proximo = novo;
-        novo->anterior = *fim;
-        *fim = novo;
-        return;
-    }
-
-    No* atual = (*cabeca)->proximo;
-    while (atual != NULL && novo_valor < atual->valor) {
-        atual = atual->proximo;
-    }
-
-    // Inserir no meio da lista
-    novo->proximo = atual;
-    novo->anterior = atual->anterior;
-    atual->anterior->proximo = novo;
-    atual->anterior = novo;
+void insere_inicio(no **lista, int valor){
+    no *novo = malloc(sizeof(no));
+    novo->elemento = valor;
+    novo->prox = *lista;
+    *lista = novo;
 }
 
-void imprimir_lista(No* cabeca) {
-    No* atual = cabeca;
-    while (atual != NULL) {
-        printf("%d ", atual->valor);
-        atual = atual->proximo;
+void imprimi(no *lista){
+    no *aux = lista;
+    while(aux != NULL){
+        printf(" %d ", aux->elemento);
+        aux = aux->prox;
     }
-    printf("\n");
 }
 
-int main() {
-    No* cabeca = NULL;
-    No* fim = NULL;
+void remover_fim(no **lista){
+    no *aux = *lista;
+    no *anterior = NULL;
 
-    // Inserção de alguns elementos na lista
-    inserir_em_ordem_decrescente(&cabeca, &fim, 5);
-    inserir_em_ordem_decrescente(&cabeca, &fim, 10);
-    inserir_em_ordem_decrescente(&cabeca, &fim, 3);
-    inserir_em_ordem_decrescente(&cabeca, &fim, 8);
+    while(aux->prox != NULL){
+        anterior = aux;
+        aux = aux->prox;
+    }
 
-    // Imprimir a lista
-    printf("Lista: ");
-    imprimir_lista(cabeca);
+    anterior->prox = NULL;
+    
+}
 
-    return 0;
+void inverte(no **lista){
+    no *atual = *lista;
+    no *proximo, *anterior = NULL;
+
+    while(atual != NULL){
+        proximo = atual->prox;
+        atual->prox = anterior;
+        anterior = atual;
+        atual = proximo;
+    }
+
+    *lista = anterior;
+}
+
+float media(no **lista){
+    no *aux = *lista;
+    int contador = 0;
+    while(aux != NULL){
+        aux = aux->prox;
+        contador++;
+    }
+    aux = *lista;
+    float soma;
+    while(aux != NULL){
+        soma += aux->elemento;
+        aux = aux->prox;
+    }
+    soma = soma/contador;
+    return soma;
+
+}
+
+
+void insere_fim(no **lista, int valor){
+    no *aux = *lista;
+    no *novo = malloc(sizeof(no));
+    novo->elemento = valor;
+    novo->prox = NULL;
+
+    while(aux->prox != NULL){
+        aux = aux->prox;
+    }
+
+    aux->prox = novo;
+}
+
+void insere_meio(no **lista, int valor){
+    no *novo = malloc(sizeof(no));
+    no *aux = *lista;
+    int contador = 0;
+    novo->elemento = valor;
+    while(aux != NULL){
+        contador++;
+        aux = aux->prox;      
+    }
+    aux = *lista;
+
+    for(int i = 1; i < contador/2; i++){
+        aux = aux->prox;
+    }
+
+    novo->prox = aux->prox;
+    aux->prox = novo;
+
+
+
+    
+}
+
+
+int main(){
+    no *lista = NULL;
+    insere_inicio(&lista, 10);
+    insere_inicio(&lista, 8);
+    insere_fim(&lista, 3.2);
+    insere_meio(&lista, 2);
+    imprimi(lista);
+
 }

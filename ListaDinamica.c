@@ -54,15 +54,13 @@ void busca_elemento(no **lista, int valor){
     no *aux = *lista;
     
     while(aux != NULL){
-        if(aux->elemento == valor){
-            printf("\n\nACHEI");
-            printf(" - No indice: %d", indice);
-            return;
-        }
         aux = aux->prox;
         indice++;
+        if(aux->elemento == valor){
+            printf("\nEu achei o %d no indice -> {%d}\n", valor, indice);
+            return;
+        }
     }
-
     printf("\nACHEI N CARINHA");
 }
 
@@ -180,6 +178,11 @@ void inverter_lista(no **lista) {
 
     *lista = anterior;
 }
+
+
+
+
+
 
 no* fundir_listas_ordenadas(no* lista1, no* lista2) {
     if (lista1 == NULL) {
